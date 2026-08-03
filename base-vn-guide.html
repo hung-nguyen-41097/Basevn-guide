@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hướng Dẫn Sử Dụng Base Request & Base Service</title>
+    <style>
+      :root {
+        --primary-color: #0b5ed7;
+        --bg-color: #f4f6f9;
+        --text-color: #212529;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 18px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0 0 5px 0;
+        font-size: 26px;
+      }
+
+      .platform-selector {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        background: white;
+        padding: 15px;
+        border-bottom: 2px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .platform-btn {
+        padding: 12px 28px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid var(--primary-color);
+        border-radius: 30px;
+        background: white;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+
+      .platform-btn.active {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .step-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-left: 6px solid var(--primary-color);
+      }
+
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .step-number {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .step-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 0;
+      }
+
+      .step-desc {
+        margin-bottom: 15px;
+      }
+
+      .step-desc ul {
+        margin: 8px 0;
+        padding-left: 24px;
+      }
+
+      .step-desc li {
+        margin-bottom: 6px;
+      }
+
+      .step-img {
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        display: block;
+      }
+
+      .guide-section {
+        display: none;
+      }
+
+      .guide-section.active {
+        display: block;
+      }
+
+      .mobile-img {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>📖 HƯỚNG DẪN SỬ DỤNG BASE SERVICE</h1>
+      <div>Quy trình Đề xuất, Thanh toán & Ký số cho Cán bộ Quản lý</div>
+    </header>
+
+    <div class="platform-selector">
+      <button
+        class="platform-btn active"
+        onclick="switchPlatform('web', event)"
+      >
+        💻 MÁY TÍNH (WEB) - Tổng quan
+      </button>
+
+      <button
+        class="platform-btn"
+        onclick="switchPlatform('web-thanh-toan', event)"
+      >
+        💻 MÁY TÍNH (WEB) - Thanh toán Hoàn ứng
+      </button>
+      <button class="platform-btn" onclick="switchPlatform('mobile', event)">
+        📱 ĐIỆN THOẠI (MOBILE) - Tổng quan
+      </button>
+    </div>
+
+    <div class="container">
+      <!-- GIAO DIỆN MÁY TÍNH (WEB) -->
+      <div id="guide-web" class="guide-section active">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Đăng nhập hệ thống Base</h3>
+          </div>
+          <div class="step-desc">
+            Truy cập địa chỉ hệ thống trên trình duyệt Web (Chrome, Cốc Cốc,
+            Edge). Nhập đầy đủ <strong>Email công việc (PSB Email)</strong> và
+            <strong>Mật khẩu</strong>, sau đó nhấn nút
+            <strong>"Đăng nhập"</strong>.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/dang-nhap.png"
+              alt="Bước 1 Web"
+              class="step-img"
+              width="500"
+              height="300"
+            />
+          </div>
+          <div class="step-desc">
+            Ngoài ra bạn có thể đang nhập bằng tài khoản mail của mình bằng cách
+            ấn nút: <strong>Đăng nhập bằng Microsoft</strong>
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/dang-nhap-bang-microsoft.png"
+              alt="dang-nhap-bang-microsoft"
+              class="step-img"
+              height="50"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Truy cập ứng dụng Base Service</h3>
+          </div>
+          <div class="step-desc">
+            Tại giao diện trung tâm điều hành Base, nhấn vào biểu tượng menu ứng
+            dụng (dưới cùng bên trái) và chọn ứng dụng
+            <strong>Service (Dịch vụ nội bộ)</strong>
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/truy-cap-ung-dung.png"
+              alt="Bước 2 Web"
+              class="step-img"
+              width="900"
+              height="500"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Giới thiệu tổng quan</h3>
+          </div>
+          <div class="step-desc">
+            Ở giao diện Kanban, bạn có thể xem tổng quan các giai đoạn cần thực
+            hiện trong quy trình và xem được tiến độ xử lý của các phiếu đề
+            xuất.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/kanban.png"
+              alt="Bước 3 Web"
+              class="step-img"
+              width="1100"
+              height="600"
+            />
+          </div>
+          <div>
+            Phiếu đề xuất được luân chuyển lần lượt qua các bước, tại mỗi bước
+            sẽ giao cho thành viên chuyên trách xử lý. Sau khi hoàn thành công
+            việc ở một bước, phiếu sẽ được chuyển sang bước tiếp theo. Lặp lại
+            thao tác cho đến khi phiếu đề xuất đi qua hết tất cả các bước thì
+            hoàn thành quy trình.
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Tạo phiếu đề xuất</h3>
+          </div>
+          <div>
+            Nhấn nút <strong>"+ Phiếu"</strong> ở góc trên bên phải để mở giao
+            diện tạo phiếu.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/tao-phieu.png"
+              alt="Bước 4 Web"
+              class="step-img"
+              width="1100"
+              height="500"
+            />
+          </div>
+          <div>
+            Sau đó hệ thống có thể sẽ yêu cầu bạn chọn một dịch vụ để tạo phiếu.
+            Chọn dịch vụ phù hợp với nhu cầu của bạn, ví dụ:
+            <strong> Base | 1.QT Thanh toán</strong>
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/tao-phieu-chon-dv.png"
+              alt="Bước 4 Web"
+              class="step-img"
+              width="900"
+              height="400"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">5</div>
+            <h3 class="step-title">Kiểm tra phiếu bạn cần xử lý</h3>
+          </div>
+          <div class="step-desc">
+            Có thể xem các phiếu đến lượt bạn xử lý bằng nhiều cách
+            <ul>
+              <li>
+                <strong>Cách 1: </strong>Vào mục phiếu Đến lượt tôi
+                <div class="img-container">
+                  <img
+                    src="web-image/kiem-tra-phieu-1.png"
+                    alt="Bước 5 Web"
+                    class="step-img"
+                    width="1100"
+                    height="500"
+                  />
+                </div>
+              </li>
+              <li>
+                <strong>Cách 2: </strong> Kiểm tra phần nhắc việc của hệ thống
+                nếu có thời gian yêu cầu xử lý. Hoặc kiểm tra mục thông báo
+                <div class="img-container">
+                  <img
+                    src="web-image/kiem-tra-phieu-2.png"
+                    alt="Bước 5 Web"
+                    class="step-img"
+                    width="1100"
+                    height="500"
+                  />
+                </div>
+              </li>
+              <li>
+                <strong>Cách 3: </strong> Truy cập quy trình, chọn dạng kanban,
+                tìm đến giai đoạn có phiếu mà bạn đang phụ trách xử lý
+                <div class="img-container">
+                  <img
+                    src="web-image/kiem-tra-phieu-3.png"
+                    alt="Bước 5 Web"
+                    class="step-img"
+                    width="1100"
+                    height="500"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">6</div>
+            <h3 class="step-title">Xét duyệt phiếu</h3>
+          </div>
+          <div class="step-desc">
+            Nhấp vào phiếu để mở giao diện chi tiết. Kiểm tra nội dung, file
+            đính kèm và các thông tin liên quan. Sau đó nhấn nút
+            <strong>"Duyệt"</strong> hoặc <strong>"Từ chối duyệt"</strong> để xử
+            lý phiếu.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/xet-duyet-phieu.png"
+              alt="Bước 6 Web"
+              class="step-img"
+              width="1100"
+              height="500"
+            />
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/duyet-phieu.png"
+              alt="Bước 6 Web"
+              class="step-img"
+              width="700"
+              height="400"
+            />
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/tu-choi-phieu.png"
+              alt="Bước 6 Web"
+              class="step-img"
+              width="700"
+              height="400"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">7</div>
+            <h3 class="step-title">Kí nội bộ</h3>
+            Tổng quan các bước
+          </div>
+          <div class="step-desc">
+            <ul>
+              <li>
+                <strong>Bước 1: </strong>Kiểm tra nhắc việc hoặc bộ lọc phiếu
+                tới lượt xử lý
+                <div class="img-container">
+                  <img
+                    src="web-image/ki-so-1.png"
+                    alt="Bước 7 Web"
+                    class="step-img"
+                    width="700"
+                    height="400"
+                  />
+                </div>
+              </li>
+              <li>
+                <strong>Bước 2: </strong> Đọc nội dung file và xác nhận ký
+                <div class="img-container">
+                  <img
+                    src="web-image/ki-so-2.png"
+                    alt="Bước 7 Web"
+                    class="step-img"
+                    width="700"
+                    height="400"
+                  />
+                </div>
+              </li>
+              <li>
+                <strong>Bước 3: </strong> Thêm chữ ký, chọn hình thức chữ ký
+                (ảnh và chữ/ chỉ có ảnh). Kéo chữ ký vào vị trí cần ký
+
+                <div class="img-container">
+                  <img
+                    src="web-image/ki-so-3.png"
+                    alt="Bước 7 Web"
+                    class="step-img"
+                    width="1100"
+                    height="500"
+                  />
+                </div>
+                Có thể chọn giữa kí đơn và kí nháy. Cụ thể:
+                <ul>
+                  <li>
+                    <strong>Kí đơn: </strong> Chọn hình thức ký số bằng ảnh và
+                    chữ. Sau đó kéo thả chữ ký vào vị trí cần ký.
+                  </li>
+                  <li>
+                    <strong>Kí nháy: </strong> Chữ ký vắn tắt của người soạn
+                    thảo, ý không viết rõ họ tên như kí đơn mà chỉ ký tắt hoặc
+                    viết gọn chữ cái
+                  </li>
+                </ul>
+              </li>
+
+              <li><strong>Bước 4: </strong> Ấn xác nhận, điền lý do nếu có.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">8</div>
+            <h3 class="step-title">Gợi ý vị trí kí</h3>
+          </div>
+          <div>
+            Để các bộ phận có thể dễ dàng ký số, người tạo phiếu có thể gợi ý vị
+            trí ký số bằng cách thêm các <strong>vị trí ký số</strong> vào file
+            đính kèm. Khi đến lượt ký số, hệ thống sẽ hiển thị chữ kí ở các vị
+            trí được gợi ý để người ký có thể xác nhận.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/goi-y-ki.png"
+              alt="Bước 8 Web"
+              class="step-img"
+              width="1100"
+              height="500"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">9</div>
+            <h3 class="step-title">Trình kí để xuất</h3>
+          </div>
+          <div>
+            Trong những trường hợp đặc biệt khi file của bạn khác với các biểu
+            mẫu có sẵn hoặc bạn muốn tự thêm người kí, bạn có thể trình kí văn
+            bản mới.
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/trinh-ki-1.png"
+              alt="Bước 9 Web"
+              class="step-img"
+              width="400"
+              height="400"
+            />
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/trinh-ki.png"
+              alt="Bước 9 Web"
+              class="step-img"
+              width="1100"
+              height="500"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">10</div>
+            <h3 class="step-title">Thực hiện phiếu được giao</h3>
+          </div>
+          <ul>
+            <li>
+              <strong>Cách 1: </strong> Khi bạn là người phụ trách xử lý phiếu
+              yêu cầu, hãy nhấp mở giao diện bên trong phiếu để đọc nội dung.
+              Nhấn Thực hiện và điền thêm một số trường thông tin, đính kèm file
+              (nếu được yêu cầu), hoặc chọn Không thực hiện.
+              <div class="img-container">
+                <img
+                  src="web-image/thuc-hien-phieu-1.png"
+                  alt="Bước 10 Web"
+                  class="step-img"
+                  width="1100"
+                  height="500"
+                />
+              </div>
+            </li>
+            <li>
+              <strong>Cách 2: </strong> Tại giao diện kanban, có thể nhấn nhanh
+              vào biểu tượng thực hiện hoặc không thực hiện
+              <div class="img-container">
+                <img
+                  src="web-image/thuc-hien-phieu-2.png"
+                  alt="Bước 10 Web"
+                  class="step-img"
+                  width="1100"
+                  height="500"
+                />
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">11</div>
+            <h3 class="step-title">Tìm kiếm và trích xuất</h3>
+          </div>
+          <ul>
+            <li>
+              Lọc các phiếu theo vai trò: người tạo, người xử lý, người theo
+              dõi,....
+              <div class="img-container">
+                <img
+                  src="web-image/tim-kiem.png"
+                  alt="Bước 11 Web"
+                  class="step-img"
+                  width="1100"
+                  height="500"
+                />
+              </div>
+            </li>
+            <li>
+              Trích xuất dữ liệu phiếu ra file Excel để tổng hợp và báo cáo
+              <div class="img-container">
+                <img
+                  src="web-image/trich-xuat.png"
+                  alt="Bước 11 Web"
+                  class="step-img"
+                  width="1100"
+                  height="500"
+                />
+              </div>
+            </li>
+          </ul>
+          <div class=""></div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">12</div>
+            <h3 class="step-title">In theo mẫu</h3>
+          </div>
+          <div>
+            Đối với các quy trình đã được cài mẫu in, trường hợp cần lưu phiếu
+            dưới dạng file mẫu của công ty, bạn có thể dùng tính năng in theo
+            mẫu
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/in-phieu.png"
+              alt="Bước 12 Web"
+              class="step-img"
+              width="1100"
+              height="500"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">13</div>
+            <h3 class="step-title">Chỉnh sửa phiếu</h3>
+          </div>
+          <div>
+            Tại mỗi giai đoạn, bạn chỉ được chỉnh sửa các trường thông tin được
+            phân quyền
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/chinh-sua-phieu.png"
+              alt="Bước 13 Web"
+              class="step-img"
+              width="700"
+              height="400"
+            />
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">14</div>
+            <h3 class="step-title">Nhân bản phiếu</h3>
+          </div>
+          <div>
+            Đề tạo nhanh phiếu đề xuất, bạn có thể sử dụng tính năng nhân bản
+            phiếu đề xuất cũ
+          </div>
+          <div class="img-container">
+            <img
+              src="web-image/nhan-ban.png"
+              alt="Bước 14 Web"
+              class="step-img"
+              width="700"
+              height="400"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div id="guide-web-thanh-toan" class="guide-section">
+        Guide web thanh toán hoàn ứng
+      </div>
+
+      <!-- GIAO DIỆN ĐIỆN THOẠI (MOBILE) -->
+      <div id="guide-mobile" class="guide-section">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Mở ứng dụng Base trên Điện thoại</h3>
+          </div>
+          <div class="step-desc">
+            Mở ứng dụng <strong>Base.vn</strong> trên màn hình điện thoại (iOS /
+            Android). Đăng nhập bằng email công việc và mật khẩu.
+          </div>
+          <img
+            src="slide1-mobile.png"
+            alt="Bước 1 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Chuyển đến ứng dụng Request / Service</h3>
+          </div>
+          <div class="step-desc">
+            Tại giao diện chính của App, chọn mục <strong>Request</strong> hoặc
+            <strong>Service</strong> từ danh sách ứng dụng ở thanh điều hướng.
+          </div>
+          <img
+            src="slide2-mobile.png"
+            alt="Bước 2 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Tạo Đề xuất mới trên Mobile</h3>
+          </div>
+          <div class="step-desc">
+            Chạm vào biểu tượng nút dấu cộng <strong>(+)</strong> ở góc dưới màn
+            hình. Chọn loại Nhóm đề xuất/Thanh toán cần gửi.
+          </div>
+          <img
+            src="slide3-mobile.png"
+            alt="Bước 3 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Nhập nội dung Đề xuất</h3>
+          </div>
+          <div class="step-desc">
+            Điền tên đề xuất, số tiền, nội dung chi tiết bằng bàn phím điện
+            thoại. Giao diện thiết kế tối ưu hiển thị ô nhập rõ ràng.
+          </div>
+          <img
+            src="slide4-mobile.png"
+            alt="Bước 4 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">5</div>
+            <h3 class="step-title">
+              Tải chứng từ / Chụp ảnh Hóa đơn trực tiếp
+            </h3>
+          </div>
+          <div class="step-desc">
+            Chạm vào biểu tượng <strong>Đính kèm</strong>: Bạn có thể chọn file
+            từ thư viện ảnh hoặc dùng Camera chụp trực tiếp hóa đơn/chứng từ
+            thực tế.
+          </div>
+          <img
+            src="slide5-mobile.png"
+            alt="Bước 5 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">6</div>
+            <h3 class="step-title">Chạm nút Gửi Đề xuất</h3>
+          </div>
+          <div class="step-desc">
+            Chạm vào nút <strong>"Gửi"</strong> ở góc trên bên phải hoặc cuối
+            màn hình để đẩy phiếu lên hệ thống.
+          </div>
+          <img
+            src="slide6-mobile.png"
+            alt="Bước 6 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">7</div>
+            <h3 class="step-title">Nhận Thông báo Duyệt (Notification)</h3>
+          </div>
+          <div class="step-desc">
+            Khi có đề xuất mới cần duyệt, điện thoại Quản lý/Kế toán sẽ nhận
+            được <strong>Thông báo đẩy (Push Notification)</strong> tức thì.
+          </div>
+          <img
+            src="slide7-mobile.png"
+            alt="Bước 7 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">8</div>
+            <h3 class="step-title">Xem chi tiết Phiếu trên Điện thoại</h3>
+          </div>
+          <div class="step-desc">
+            Chạm trực tiếp vào thông báo để mở xem nội dung phiếu, kiểm tra hình
+            ảnh chứng từ đính kèm ngay trên màn hình di động.
+          </div>
+          <img
+            src="slide8-mobile.png"
+            alt="Bước 8 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">9</div>
+            <h3 class="step-title">Xác thực Ký số Di động (Smart CA / OTP)</h3>
+          </div>
+          <div class="step-desc">
+            Đối với ký số trên Mobile: Xác nhận qua ứng dụng chữ ký số từ xa
+            (Smart CA) hoặc nhập mã OTP gửi về điện thoại để duyệt ký.
+          </div>
+          <img
+            src="slide9-mobile.png"
+            alt="Bước 9 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-number">10</div>
+            <h3 class="step-title">Bấm Duyệt / Từ chối bằng 1 chạm</h3>
+          </div>
+          <div class="step-desc">
+            Chạm nút <strong>"Duyệt" (màu xanh)</strong> để hoàn thành phê duyệt
+            hoặc chọn <strong>"Từ chối" (màu đỏ)</strong> nếu cần trả lại
+            phiếu[cite: 1, 2].
+          </div>
+          <img
+            src="slide10-mobile.png"
+            alt="Bước 10 Mobile"
+            class="step-img mobile-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function switchPlatform(platform, event) {
+        document
+          .querySelectorAll(".platform-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        event.currentTarget.classList.add("active");
+
+        document
+          .querySelectorAll(".guide-section")
+          .forEach((sec) => sec.classList.remove("active"));
+        document.getElementById("guide-" + platform).classList.add("active");
+      }
+    </script>
+  </body>
+</html>
