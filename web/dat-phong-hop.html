@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web - Base Booking (Đặt phòng họp)</title>
+    <link rel="stylesheet" href="../base-vn-guide.css" />
+  </head>
+  <body>
+    <div class="page-placeholder">
+      <h2>
+        WEB - Base Booking (Đặt phòng họp)
+        <button type="button" class="print-btn" onclick="window.print()">
+          🖨️ In hướng dẫn
+        </button>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3 class="step-title">
+            Truy cập Base Booking và xem lịch phòng họp
+          </h3>
+        </div>
+        <div class="step-desc">
+          Nhấn vào biểu tượng <strong>Ứng dụng</strong> (dấu lưới ô vuông) ở
+          cuối thanh menu bên trái, sau đó chọn ứng dụng
+          <strong>Booking</strong> (Đặt tài nguyên) trong danh sách để mở màn
+          hình <strong>"Các phòng họp"</strong>. Ngoài ra, có thể truy cập trực
+          tiếp bằng đường dẫn
+          <strong
+            ><a href="https://booking.base.vn" target="_blank" rel="noopener"
+              >booking.base.vn</a
+            ></strong
+          >.
+        </div>
+        <div class="img-container">
+          <img
+            src="../web-image/dat-phong-hop/chon-ung-dung-booking.png"
+            alt="Chọn ứng dụng Booking từ menu Ứng dụng"
+            class="step-img"
+            width="900"
+            height="500"
+          />
+        </div>
+        <div class="img-container">
+          <img
+            src="../web-image/dat-phong-hop/lich-tuan.png"
+            alt="Xem lịch phòng họp theo tuần"
+            class="step-img"
+            width="900"
+            height="500"
+          />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Chuyển đổi chế độ xem Ngày / Tháng</h3>
+        </div>
+        <div class="step-desc">
+          Ở góc trên bên phải, chọn <strong>Ngày</strong>,
+          <strong>Tuần</strong> hoặc <strong>Tháng</strong> để đổi cách hiển thị
+          lịch. Chế độ <strong>Ngày</strong> hiển thị chi tiết theo từng khung
+          giờ, thuận tiện khi cần đặt phòng vào một mốc giờ cụ thể.
+        </div>
+        <div class="img-container">
+          <img
+            src="../web-image/dat-phong-hop/lich-ngay.png"
+            alt="Xem lịch phòng họp theo ngày"
+            class="step-img"
+            width="900"
+            height="500"
+          />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Xem danh sách đăng ký của một phòng</h3>
+        </div>
+        <div class="step-desc">
+          Chọn một phòng họp ở menu bên trái (ví dụ:
+          <strong>Hội Trường</strong>), sau đó chọn tab
+          <strong>DANH SÁCH</strong> để xem toàn bộ các lượt đăng ký đã tạo cho
+          phòng đó, kèm thời gian và trạng thái duyệt.
+        </div>
+        <div class="img-container">
+          <img
+            src="../web-image/dat-phong-hop/danh-sach-dang-ky.png"
+            alt="Danh sách đăng ký phòng họp"
+            class="step-img"
+            width="900"
+            height="500"
+          />
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Tạo đăng ký phòng họp mới</h3>
+        </div>
+        <div class="step-desc">
+          Nhấn nút <strong>"Đăng kí ngay"</strong> (ở menu trái, hoặc bấm trực
+          tiếp vào một ô giờ trống trên lịch) để mở form
+          <strong>"Tạo một đăng kí mới"</strong>. Điền <strong>Tiêu đề</strong>,
+          <strong>Thời gian bắt đầu/kết thúc</strong>, người theo dõi và mô tả
+          nếu cần, sau đó nhấn <strong>"Lưu"</strong> để hoàn tất đăng ký.
+        </div>
+        <div class="img-container">
+          <img
+            src="../web-image/dat-phong-hop/tao-dang-ky-phong-hop.png"
+            alt="Tạo đăng ký phòng họp mới"
+            class="step-img"
+            width="900"
+            height="500"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Phóng to Ảnh -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal">&times;</span>
+      <img class="modal-content" id="imgFull" />
+    </div>
+
+    <script src="../base-vn-guide.js"></script>
+  </body>
+</html>
