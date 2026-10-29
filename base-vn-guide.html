@@ -8,11 +8,20 @@
   </head>
   <body>
     <header>
+      <button
+        type="button"
+        class="menu-toggle"
+        aria-label="Mở mục lục"
+        aria-controls="section-menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
       <h1>📖 Hướng dẫn sử dụng các tính năng của BaseVN</h1>
     </header>
 
     <div class="layout">
-      <nav class="section-menu" aria-label="Mục lục hướng dẫn">
+      <nav class="section-menu" id="section-menu" aria-label="Mục lục hướng dẫn">
         <div class="menu-group">
           <div class="menu-heading">WEB</div>
           <div class="menu-links">
@@ -37,6 +46,8 @@
         </div>
       </nav>
 
+      <div class="menu-backdrop" hidden></div>
+
       <main class="container">
         <iframe
           class="content-frame"
@@ -51,6 +62,25 @@
       (function () {
         var frame = document.querySelector("iframe.content-frame");
         var links = document.querySelectorAll('.menu-links a[target="content-frame"]');
+        var toggle = document.querySelector(".menu-toggle");
+        var backdrop = document.querySelector(".menu-backdrop");
+
+        function setMenuOpen(open) {
+          document.body.classList.toggle("menu-open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Đóng mục lục" : "Mở mục lục");
+          backdrop.hidden = !open;
+        }
+
+        toggle.addEventListener("click", function () {
+          setMenuOpen(!document.body.classList.contains("menu-open"));
+        });
+        backdrop.addEventListener("click", function () {
+          setMenuOpen(false);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setMenuOpen(false);
+        });
 
         function setActive(page) {
           links.forEach(function (link) {
@@ -71,6 +101,7 @@
           link.addEventListener("click", function (e) {
             e.preventDefault();
             loadPage(link.getAttribute("href"), true);
+            setMenuOpen(false);
           });
         });
 
